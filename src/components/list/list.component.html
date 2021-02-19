@@ -1,0 +1,31 @@
+<div class="nes-container with-title">
+	<p class="title">
+		Price List
+	</p>
+	<p class="nes-badge copy-list" #parentCopy (click)="copyListId()">
+		<span class="is-error">Click to copy list ID</span>
+	</p>
+	<p class="is-small" *ngIf="(list.isClosed | async)"><strong>Your list is already closed</strong></p>
+	<add-product *ngIf="!(list.isClosed | async)"></add-product>
+	<div class="table-container">
+		<div class="nes-table-responsive">
+			<table class="nes-table is-bordered is-centered">
+				<thead>
+					<tr>
+						<th><span>name</span></th>
+						<th><span>price</span></th>
+						<th><span>qty</span></th>
+						<th><span>btns</span></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<product *ngFor="let product of products" [productRef]="product" [list]="list"></product>
+
+	</div>
+	<div>
+		<p>Total: <i class="nes-icon coin is-small"></i>{{ total }}</p>
+		<button *ngIf="!(list.isClosed | async)" type="button" class="nes-btn is-error" (click)="closeList()">Close list</button>
+		<button *ngIf="(list.isClosed | async)" type="button" class="nes-btn is-warning"  (click)="returnHome()">Return home</button>
+	</div>
+</div>

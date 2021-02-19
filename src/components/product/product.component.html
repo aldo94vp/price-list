@@ -1,0 +1,33 @@
+<div class="nes-table-responsive">
+  <form #form="ngForm" (ngSubmit)="updatePrice(form)">
+    <table class="nes-table is-bordered is-centered">
+      <tbody>
+        <tr>
+          <td><span>{{ product.name }}</span></td>
+          <td><span>{{ product.price | async | currency }}</span></td>
+          <td *ngIf="isUpdating"><div >
+            <input type="number" [ngModel]="product.price | async" name="price" (focusout)="updatePrice(form)" />
+            <input
+              type="number"
+              [ngModel]="product.qty | async"
+              name="qty"
+              hidden="true"
+            />
+            <div>
+              <button type="button" (click)="changeQty(true, form)">+</button>
+              <button type="button" (click)="changeQty(false, form)">-</button>
+            </div>
+            <input type="submit" value="done">
+          </div></td>
+          <td><span>{{ product.qty | async }}</span></td>
+          <td *ngIf="!(list.isClosed | async)">
+            <div class="nes-badge is-splited">
+              <span *ngIf="!isUpdating" (click)="isUpdating = true" class="is-primary">✏️</span>
+              <span *ngIf="!isUpdating" (click)="delete()" class="is-warning">✂️</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

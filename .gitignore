@@ -1,0 +1,7 @@
+node_modules/
+public/
+src/environments/environment.ts
+
+.firebase/
+.vscode/
+npm-debug.log
