@@ -6,17 +6,17 @@
   font-family: 'Press Start 2P', cursive;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .nes-container {
   margin: 10px;
   padding-left: 15px;
   padding-right: 15px;
-  &.is-rounded {
-    border-image-repeat: stretch !important;
+  
+  &.with-input {
     padding: 5px 8px;
-
-    &.with-border-button {
-      padding-bottom: 60px;
-    }
   }
 }
 
@@ -32,8 +32,8 @@
   }
   &.in-right-border {
     position: absolute;
-    bottom: -8px;
-    right: -8px;
+    bottom: -4px;
+    right: -4px;
   }
 }
 
@@ -55,4 +55,21 @@
   animation-iteration-count: 1;
   transition: ease-in-out 0.4s;
   color: #db0505 !important;
+}
+
+
+@keyframes grow {
+  0% { transform: scale(1) }
+  15% { transform: scale(1.01) }
+  30% { transform: scale(1.02) }
+  45% { transform: scale(1.03) }
+  60% { transform: scale(1.04) }
+  75% { transform: scale(1.05) }
+  90% { transform: scale(1.06) }
+  100% { transform: scale(1.07) }
+}
+.transition-click {
+  animation: grow 0.25s;
+  animation-iteration-count: 1;
+  transition: ease-in 0.1s;
 }

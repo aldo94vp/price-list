@@ -30,8 +30,8 @@ export class EnterListComponent {
         this.list.setList(l.ref);
         this.router.navigateByUrl("/list");
       } else {
-        this.renderer.addClass(this.errorSpan, 'error');
         this.error = `list doesn't exist`;
+        this.renderer.addClass(this.errorSpan.nativeElement, 'error');
       }
     });
   }

@@ -15,6 +15,7 @@ import { Product } from "../../models/product";
 })
 export class ListComponent implements OnInit {
   @ViewChild('parentCopy') parentCopy: ElementRef;
+  @ViewChild('spanCopy') spanCopy: ElementRef;
   list: List;
   product: Product;
   products: QueryDocumentSnapshot<Collections.Product>[];
@@ -104,6 +105,16 @@ export class ListComponent implements OnInit {
     el.select();
     document.execCommand('copy');
     el.remove();
+    this.renderer.addClass(this.spanCopy.nativeElement, 'is-error');
+    this.renderer.addClass(this.spanCopy.nativeElement, 'transition-click');
+    this.renderer.removeClass(this.spanCopy.nativeElement, 'is-warning');
+    this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Copied!');
+    setTimeout(() => {
+      this.renderer.addClass(this.spanCopy.nativeElement, 'is-warning');
+      this.renderer.removeClass(this.spanCopy.nativeElement, 'is-error');
+      this.renderer.removeClass(this.spanCopy.nativeElement, 'transition-click');
+      this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Click to copy list ID');
+    }, 3000);
   }
 
   ngOnInit() {

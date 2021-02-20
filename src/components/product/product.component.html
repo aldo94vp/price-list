@@ -1,33 +1,33 @@
-<div class="nes-table-responsive">
-  <form #form="ngForm" (ngSubmit)="updatePrice(form)">
-    <table class="nes-table is-bordered is-centered">
-      <tbody>
-        <tr>
-          <td><span>{{ product.name }}</span></td>
-          <td><span>{{ product.price | async | currency }}</span></td>
-          <td *ngIf="isUpdating"><div >
-            <input type="number" [ngModel]="product.price | async" name="price" (focusout)="updatePrice(form)" />
-            <input
-              type="number"
-              [ngModel]="product.qty | async"
-              name="qty"
-              hidden="true"
-            />
-            <div>
-              <button type="button" (click)="changeQty(true, form)">+</button>
-              <button type="button" (click)="changeQty(false, form)">-</button>
-            </div>
-            <input type="submit" value="done">
-          </div></td>
-          <td><span>{{ product.qty | async }}</span></td>
-          <td *ngIf="!(list.isClosed | async)">
-            <div class="nes-badge is-splited">
-              <span *ngIf="!isUpdating" (click)="isUpdating = true" class="is-primary">✏️</span>
-              <span *ngIf="!isUpdating" (click)="delete()" class="is-warning">✂️</span>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-</div>
+<form #form="ngForm" (ngSubmit)="updatePrice(form)">
+  <div class="products__list">
+    <p class="products__list__item">{{ product.name }}</p>
+    <p class="products__list__item">{{ product.price | async | currency }}</p>
+    <div *ngIf="isUpdating" class="products__list__edit nes-container">
+      <p class="nes-text is-primary center-text">{{ product.name }}</p>
+      <div class="nes-field is-inline products__list__edit__price">
+        <label for="price" class="is-inline">price:</label>
+        <input type="number" class="nes-input" [ngModel]="product.price | async" name="price" (focusout)="updatePrice(form)" />
+        <input
+          type="number"
+          [ngModel]="product.qty | async"
+          name="qty"
+          hidden="true"
+        />
+      </div>
+      <div class="products__list__edit__buttons">
+        <p>quantity: </p>
+        <p>{{ product.qty | async }}</p>
+        <button type="button" class="nes-btn" (click)="changeQty(true, form)">+</button>
+        <button type="button" class="nes-btn" (click)="changeQty(false, form)">-</button>
+        <input type="submit" class="nes-btn" value="done">
+      </div>
+    </div>
+    <p class="products__list__item">{{ product.qty | async }}</p>
+    <div *ngIf="!(list.isClosed | async)" class="products__list__item">
+      <div class="nes-badge is-splited">
+        <span *ngIf="!isUpdating" (click)="isUpdating = true" class="is-primary">✏️</span>
+        <span *ngIf="!isUpdating" (click)="delete()" class="is-warning">✂️</span>
+      </div>
+    </div>
+  </div>
+</form>

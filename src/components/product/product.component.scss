@@ -1,15 +1,96 @@
-.nes-table-responsive {
-  top: -4px;
+%line-divider {
+  background-color: #212529;
+  content: " ";
   position: relative;
+  display: inline-block;
+  width: 2px;
+  height: 0.8rem;
+  left: -5px;
 }
 
-.nes-table {
-  font-size: 0.8rem;
-  td {
-    padding: 2px
+
+.products {  
+  &__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &__item {
+      &:nth-child(1) {
+        flex: 0 0 43%;
+        display: inherit;
+        word-break: break-word;
+        padding-right: 1%;
+        margin: 0;
+        font-size: 80%;
+        flex-flow: row;
+        align-items: center;
+      }
+      &:nth-child(2) {
+        // flex: 0 0 25%;
+        flex: 0 0 23%;
+        display: inherit;
+        font-size: 85%;
+        letter-spacing: -1px;
+        margin: 0;
+        flex-flow: row;
+        align-items: center;
+        &::before {
+          @extend %line-divider;
+        }
+      }
+      &:nth-child(3) {
+        display: inherit;
+        // flex: 0 0 15%;
+        flex: 0 0 16%;
+        line-height: 1.2;
+        margin: 0;
+        flex-flow: row;
+        align-items: center;
+        &::before {
+          @extend %line-divider;
+          left: -4px;
+        }
+      }
+      &:nth-child(4) {
+        // flex: 0 0 17%;
+        flex: 0 0 18%;
+        display: inherit;
+        position: relative;
+        margin: 0.7rem 0;
+        &::before {
+          @extend %line-divider;
+          left: -7px;
+        }
+        .nes-badge {
+          position: absolute;
+          top: -8px;
+          height: 1rem;
+        }
+      }
+    }
+    &__edit {
+      width: calc(100% - 10px);
+      padding: 5px;
+      margin: 0;
+      position: absolute;
+      background-color: white;
+      z-index: 1;
+      &__price {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      &__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+    }
   }
 }
 
 .nes-badge {
-  width: 4.5rem;
+  width: 50px;
 }
