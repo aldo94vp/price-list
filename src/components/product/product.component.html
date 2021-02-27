@@ -8,6 +8,7 @@
         <label for="price" class="is-inline">price:</label>
         <input type="number" class="nes-input" [ngModel]="product.price | async" name="price" (focusout)="updatePrice(form)" />
         <input
+          #qty
           type="number"
           [ngModel]="product.qty | async"
           name="qty"
@@ -16,9 +17,9 @@
       </div>
       <div class="products__list__edit__buttons">
         <p>quantity: </p>
-        <p>{{ product.qty | async }}</p>
-        <button type="button" class="nes-btn" (click)="changeQty(true, form)">+</button>
+        <p>{{ qty.value }}</p>
         <button type="button" class="nes-btn" (click)="changeQty(false, form)">-</button>
+        <button type="button" class="nes-btn" (click)="changeQty(true, form)">+</button>
         <input type="submit" class="nes-btn" value="done">
       </div>
     </div>

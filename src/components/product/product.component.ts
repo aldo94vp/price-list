@@ -31,8 +31,6 @@ export class ProductComponent implements OnInit {
     increment ? 
       f.form.controls['qty'].setValue(value+1) :
       f.form.controls['qty'].setValue(value-1);
-    this.product.update(this.id, f.value).
-      catch(console.log);
   }
 
   updatePrice(form: NgForm) {
@@ -53,6 +51,5 @@ export class ProductComponent implements OnInit {
       p => this.product.setProduct(p.data() as Collections.Product),
       console.log
     );
-    console.log(this.list)
   }
 }
