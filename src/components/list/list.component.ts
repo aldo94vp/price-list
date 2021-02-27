@@ -4,6 +4,7 @@ import {
   QueryDocumentSnapshot
 } from "@angular/fire/firestore";
 import { Router } from "@angular/router";
+import { DarkModeService } from "src/services/dark-mode.service";
 import { Collections } from "../../interfaces/interfaces";
 import { List } from "../../models/list";
 import { Product } from "../../models/product";
@@ -14,6 +15,7 @@ import { Product } from "../../models/product";
   styleUrls: ["./list.component.scss"]
 })
 export class ListComponent implements OnInit {
+  @ViewChild('container') container: ElementRef;
   @ViewChild('parentCopy') parentCopy: ElementRef;
   @ViewChild('spanCopy') spanCopy: ElementRef;
   list: List;
@@ -24,7 +26,8 @@ export class ListComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private darkModeService: DarkModeService
     ) {
     this.list = new List(this.afs);
     this.product = new Product(this.afs);
@@ -115,6 +118,10 @@ export class ListComponent implements OnInit {
       this.renderer.removeClass(this.spanCopy.nativeElement, 'transition-click');
       this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Click to copy list ID');
     }, 3000);
+  }
+
+  ngAfterViewInit() {
+    this.darkModeService.initService(this.renderer, this.container);
   }
 
   ngOnInit() {

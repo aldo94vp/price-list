@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import {
   AngularFirestore,
   QueryDocumentSnapshot
@@ -7,12 +7,12 @@ import { NgForm } from "@angular/forms";
 import { List } from "../../models/list";
 import { Collections } from "../../interfaces/interfaces";
 import { Product } from "../../models/product";
+import { DarkModeService } from "src/services/dark-mode.service";
 
 @Component({
   selector: "product",
   templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ["./product.component.scss"]
 })
 export class ProductComponent implements OnInit {
   @Input() productRef: QueryDocumentSnapshot<Collections.Product>;
@@ -21,10 +21,19 @@ export class ProductComponent implements OnInit {
   isUpdating: boolean = false;
   id: string;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private darkModeService: DarkModeService) {
     this.product = new Product(this.afs);
   }
   
+  startUpdating() {
+    this.isUpdating = true;
+    setTimeout(() => {
+      if(this.darkModeService.darkModeActivated) {
+        this.darkModeService.setMode(true, this.darkModeService.dBtn);
+      }
+    },0);
+  }
+
   changeQty(increment: boolean, f: NgForm) {
     const value: number = f.form.controls['qty'].value;
     if (value < 2 && !increment) return;

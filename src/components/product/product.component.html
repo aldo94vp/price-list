@@ -26,8 +26,8 @@
     <p class="products__list__item">{{ product.qty | async }}</p>
     <div *ngIf="!(list.isClosed | async)" class="products__list__item">
       <div class="nes-badge is-splited">
-        <span *ngIf="!isUpdating" (click)="isUpdating = true" class="is-primary">✏️</span>
-        <span *ngIf="!isUpdating" (click)="delete()" class="is-warning">✂️</span>
+        <span *ngIf="!isUpdating" (click)="startUpdating()" class="is-primary">📝</span>
+        <span *ngIf="!isUpdating" (click)="delete()" class="is-warning">❌</span>
       </div>
     </div>
   </div>
