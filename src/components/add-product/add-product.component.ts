@@ -15,6 +15,8 @@ export class AddProductComponent {
   }
 
   add(form: NgForm) {
+    const { name, price } = form.value;
+    if ((!name || name === '') || (!price || price === '0')) return;
     this.product
       .create(form.value)
       .catch(console.log)
