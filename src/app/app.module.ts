@@ -15,6 +15,7 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { ListGuard } from "./routing/list.guard";
+import { SafeurlPipe } from "src/pipes/safeUrl";
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { ListGuard } from "./routing/list.guard";
     AddProductComponent,
     ProductComponent,
     ListComponent,
-    HomeComponent
+    HomeComponent,
+    SafeurlPipe
   ],
   providers: [ListGuard, {provide: APP_BASE_HREF, useValue: '/'}],
   bootstrap: [PriceListComponent]

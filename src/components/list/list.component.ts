@@ -102,12 +102,12 @@ export class ListComponent implements OnInit {
   }
 
   copyListId() {
-    const el: HTMLTextAreaElement = /* document.createElement('textarea'); */ this.renderer.createElement('textarea');
-    el.value = this.list.getListId();
-    this.renderer.appendChild(this.parentCopy.nativeElement, el);
-    el.select();
-    document.execCommand('copy');
-    el.remove();
+    // const el: HTMLTextAreaElement = /* document.createElement('textarea'); */ this.renderer.createElement('textarea');
+    // el.value = this.list.getListId();
+    // this.renderer.appendChild(this.parentCopy.nativeElement, el);
+    // el.select();
+    // document.execCommand('copy');
+    // el.remove();
     this.renderer.addClass(this.spanCopy.nativeElement, 'is-error');
     this.renderer.addClass(this.spanCopy.nativeElement, 'transition-click');
     this.renderer.removeClass(this.spanCopy.nativeElement, 'is-warning');
@@ -116,7 +116,7 @@ export class ListComponent implements OnInit {
       this.renderer.addClass(this.spanCopy.nativeElement, 'is-warning');
       this.renderer.removeClass(this.spanCopy.nativeElement, 'is-error');
       this.renderer.removeClass(this.spanCopy.nativeElement, 'transition-click');
-      this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Click to copy list ID');
+      this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Click to share list ID');
     }, 3000);
   }
 
