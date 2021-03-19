@@ -45,10 +45,12 @@ export class DarkModeService {
     const childrenContainer = Array.from(document.getElementsByClassName('nes-container'));
     const childrenInput = Array.from(document.getElementsByClassName('nes-input'));
     const childrenBallon = Array.from(document.getElementsByClassName('nes-balloon'));
-    console.log(childrenBallon)
-    isDark ?
-      this.renderer.addClass(this.container.nativeElement, 'is-dark') :
+    this.renderer.setStyle(document.body, 'background-color', isDark ? '#212529': '#fff');
+    if (isDark) {
+      this.renderer.addClass(this.container.nativeElement, 'is-dark')
+    } else {
       this.renderer.removeClass(this.container.nativeElement, 'is-dark');
+    }
     this.applyModeChildren(childrenContainer, isDark);
     this.applyModeChildren(childrenInput, isDark);
     this.applyModeChildren(childrenBallon, isDark);
