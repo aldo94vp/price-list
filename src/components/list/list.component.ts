@@ -3,7 +3,7 @@ import {
   AngularFirestore,
   QueryDocumentSnapshot
 } from "@angular/fire/firestore";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DarkModeService } from "src/services/dark-mode.service";
 import { Collections } from "../../interfaces/interfaces";
 import { List } from "../../models/list";
@@ -26,6 +26,7 @@ export class ListComponent implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private router: Router,
+    private activeRoute: ActivatedRoute,
     private renderer: Renderer2,
     private darkModeService: DarkModeService
     ) {
@@ -102,12 +103,6 @@ export class ListComponent implements OnInit {
   }
 
   copyListId() {
-    // const el: HTMLTextAreaElement = /* document.createElement('textarea'); */ this.renderer.createElement('textarea');
-    // el.value = this.list.getListId();
-    // this.renderer.appendChild(this.parentCopy.nativeElement, el);
-    // el.select();
-    // document.execCommand('copy');
-    // el.remove();
     this.renderer.addClass(this.spanCopy.nativeElement, 'is-error');
     this.renderer.addClass(this.spanCopy.nativeElement, 'transition-click');
     this.renderer.removeClass(this.spanCopy.nativeElement, 'is-warning');
@@ -125,10 +120,13 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.list.getList(this.list.getListId()).
+    const id = this.activeRoute.snapshot.params['listId'] || this.list.getListId();
+    this.list.getList(id).
       then((l) => {
         this.list.setList(l.ref)
         this.getProductList()
-      }).catch(console.log)
+      }).catch(() => {
+        this.router.navigateByUrl('/not-found/error');
+      })
   }
 }

@@ -4,14 +4,12 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Router,
-  CanActivateChild
+  Router
 } from "@angular/router";
-import { Observable } from "rxjs";
 import { List } from "../../models/list";
 
 @Injectable()
-export class ListGuard implements CanActivate, CanActivateChild {
+export class HomeGuard implements CanActivate {
   list: List;
   constructor(private afs: AngularFirestore, private router: Router) {
     this.list = new List(this.afs);
@@ -22,7 +20,7 @@ export class ListGuard implements CanActivate, CanActivateChild {
     state: RouterStateSnapshot
   ): boolean {
     if (this.listIsSet()) {
-      this.router.navigateByUrl("/list");
+      this.router.navigateByUrl("/list/");
     } else {
       return true;
     }
@@ -31,19 +29,5 @@ export class ListGuard implements CanActivate, CanActivateChild {
   listIsSet(): boolean {
     const id = this.list.getListId().length;
     return id > 0 ? true: false
-  }
-
-  async canActivateChild(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
-    if (!this.listIsSet()) return false;
-    const id = this.list.getListId();
-    const l = await this.list.getList(id)
-    if (l.exists) {
-      return true;
-    } else {
-      this.router.navigateByUrl("/");
-    }
   }
 }
