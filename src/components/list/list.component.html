@@ -1,27 +1,21 @@
-<div #container class="nes-container with-title">
-	<p class="title">
-		Price List
-	</p>
-	
-	<p class="nes-badge copy-list" #parentCopy (click)="copyListId()">
-		<a [href]="list.getListId() | safeurl: 'whatsapp://send?text='">
-			<span #spanCopy class="is-warning"><i class="nes-icon whatsapp is-small"></i>Click to share list ID<i class="nes-icon whatsapp is-small"></i></span>
-		</a>
-	</p>
-	<p class="is-small" *ngIf="(list.isClosed | async)"><strong>Your list is already closed</strong></p>
-	<add-product *ngIf="!(list.isClosed | async)"></add-product>
-	<div class="products__container nes-container">
-		<div class="products__header">
-			<p>name</p>
-			<p>price</p>
-			<p>qty</p>
-			<p *ngIf="!(list.isClosed | async)">btns</p>
-		</div>
-		<product *ngFor="let product of products" [productRef]="product" [list]="list"></product>
+<p class="nes-badge copy-list" (click)="copyListId()">
+	<a [href]="list.getListId() | safeurl: 'whatsapp://send?text=https%3A%2F%2Fprice-list-aldo94vp.web.app%2Flist%2F'">
+		<span #spanCopy class="is-warning"><i class="nes-icon whatsapp is-small"></i> Share list <i class="nes-icon whatsapp is-small"></i></span>
+	</a>
+</p>
+<p class="is-small" *ngIf="(list.isClosed | async)"><strong>Your list is already closed</strong></p>
+<add-product *ngIf="!(list.isClosed | async)"></add-product>
+<div class="products__container nes-container">
+	<div class="products__header">
+		<p>name</p>
+		<p>price</p>
+		<p>qty</p>
+		<p *ngIf="!(list.isClosed | async)">btns</p>
 	</div>
-	<div class="total">
-		<p>Total: <i class="nes-icon coin is-small"></i>{{ total }}</p>
-		<button *ngIf="!(list.isClosed | async)" type="button" class="nes-btn is-error" (click)="closeList()">Close list</button>
-		<button *ngIf="(list.isClosed | async)" type="button" class="nes-btn is-warning"  (click)="returnHome()">Return home</button>
-	</div>
+	<product *ngFor="let product of products" [productRef]="product" [list]="list"></product>
+</div>
+<div class="total">
+	<p>Total: <i class="nes-icon coin is-small"></i>{{ total | number: '1.2' }}</p>
+	<button *ngIf="!(list.isClosed | async)" type="button" class="nes-btn is-error" (click)="closeList()">Close list</button>
+	<button *ngIf="(list.isClosed | async)" type="button" class="nes-btn is-warning"  (click)="returnHome()">Return home</button>
 </div>
