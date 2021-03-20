@@ -1,18 +1,13 @@
-<div #container class="nes-container with-title">
-	<p class="title">
-		Price List
-	</p>
-		<section class="message-list">
-			<section class="message">
-				<!-- Balloon -->
-				<div class="nes-balloon from-right">
-					<p class="description">This app allows you to register products and its price calculating a total and can be modified in real time for multiple users simultaneously</p>
-				</div>
-				<i class="nes-kirby"></i>
-			</section>
-		</section>
-	<p>To begin, type(or paste) your listID below</p>
-	<enter-list></enter-list>
-	<p>If you don't have one, click in create button</p>
-	<create-list></create-list>
-</div>
+<section class="message-list">
+	<section class="message">
+		<!-- Balloon -->
+		<div class="nes-balloon from-right" (click)="showDescription()">
+			<p #ballon class="description">click me!</p>
+		</div>
+		<i class="nes-kirby"></i>
+	</section>
+</section>
+<p>To begin, type(or paste) your listID below</p>
+<enter-list></enter-list>
+<p>If you don't have one, click in create button</p>
+<create-list></create-list>

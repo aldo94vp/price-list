@@ -2,11 +2,11 @@ import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 
 @Injectable({providedIn: 'root'})
 export class DarkModeService {
-  renderer: Renderer2;
-  container: ElementRef<HTMLElement>;
-  lBtn: ElementRef;
-  dBtn: ElementRef;
-  darkModeActivated: boolean = false;
+  private renderer: Renderer2;
+  private container: ElementRef<HTMLElement>;
+  private lBtn: ElementRef;
+  private dBtn: ElementRef;
+  private darkModeActivated: boolean = false;
   constructor() {  }
 
   initService(renderer: Renderer2, container: ElementRef) {
@@ -24,7 +24,11 @@ export class DarkModeService {
     });
   }
 
-  createTriggers(className: string, icon: string): ElementRef {
+  reloadTheme() {
+    this.setMode(this.darkModeActivated, this.darkModeActivated ? this.dBtn: this.lBtn);
+  }
+
+  private createTriggers(className: string, icon: string): ElementRef {
     const el = this.renderer.createElement('button');
     this.renderer.addClass(el, 'nes-btn');
     this.renderer.addClass(el, `${className}-mode`);
@@ -38,7 +42,7 @@ export class DarkModeService {
     return el;
   }
 
-  setMode(isDark: boolean, el: ElementRef) {
+  private setMode(isDark: boolean, el: ElementRef) {
     this.darkModeActivated = isDark ? true : false;
     localStorage.setItem('dark-mode', `${this.darkModeActivated}`);
     this.renderer.setStyle(el, 'display', 'none');
@@ -58,7 +62,7 @@ export class DarkModeService {
     this.renderer.setStyle(isDark ? this.lBtn: this.dBtn, 'display', 'inline-block');
   }
 
-  applyModeChildren(children: Element[], isDark: boolean) {
+  private applyModeChildren(children: Element[], isDark: boolean) {
     for (const child of children) {
       isDark ?
         this.renderer.addClass(child, 'is-dark') :

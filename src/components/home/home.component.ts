@@ -1,5 +1,4 @@
 import { Component, ElementRef, Renderer2, ViewChild } from "@angular/core";
-import { DarkModeService } from "src/services/dark-mode.service";
 
 @Component({
   selector: "home",
@@ -7,11 +6,14 @@ import { DarkModeService } from "src/services/dark-mode.service";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent {
-  @ViewChild('container') container: ElementRef;
-  constructor(
-    private renderer: Renderer2,
-    private darkModeService: DarkModeService) {}
-  ngAfterViewInit() {
-    this.darkModeService.initService(this.renderer, this.container);
+  @ViewChild('ballon') ballon: ElementRef<HTMLParagraphElement>;
+  constructor(private renderer: Renderer2) {}
+
+  showDescription() {
+    const description = `This app allows you to register products and its price calculating a total and can be modified in real time for multiple users simultaneously`;
+    this.renderer.setProperty(this.ballon.nativeElement, 'textContent', description);
+    setTimeout(() => {
+      this.renderer.setProperty(this.ballon.nativeElement, 'textContent', 'click me!');
+    }, 5000);
   }
 }

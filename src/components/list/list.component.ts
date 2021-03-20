@@ -4,7 +4,6 @@ import {
   QueryDocumentSnapshot
 } from "@angular/fire/firestore";
 import { ActivatedRoute, Router } from "@angular/router";
-import { DarkModeService } from "src/services/dark-mode.service";
 import { Collections } from "../../interfaces/interfaces";
 import { List } from "../../models/list";
 import { Product } from "../../models/product";
@@ -15,8 +14,6 @@ import { Product } from "../../models/product";
   styleUrls: ["./list.component.scss"]
 })
 export class ListComponent implements OnInit {
-  @ViewChild('container') container: ElementRef;
-  @ViewChild('parentCopy') parentCopy: ElementRef;
   @ViewChild('spanCopy') spanCopy: ElementRef;
   list: List;
   product: Product;
@@ -27,8 +24,7 @@ export class ListComponent implements OnInit {
     private afs: AngularFirestore,
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private renderer: Renderer2,
-    private darkModeService: DarkModeService
+    private renderer: Renderer2
     ) {
     this.list = new List(this.afs);
     this.product = new Product(this.afs);
@@ -103,20 +99,17 @@ export class ListComponent implements OnInit {
   }
 
   copyListId() {
+    const text = `<i class="nes-icon whatsapp is-small"></i> Share list <i class="nes-icon whatsapp is-small"></i>`;
     this.renderer.addClass(this.spanCopy.nativeElement, 'is-error');
     this.renderer.addClass(this.spanCopy.nativeElement, 'transition-click');
     this.renderer.removeClass(this.spanCopy.nativeElement, 'is-warning');
-    this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Copied!');
+    this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Shared!');
     setTimeout(() => {
       this.renderer.addClass(this.spanCopy.nativeElement, 'is-warning');
       this.renderer.removeClass(this.spanCopy.nativeElement, 'is-error');
       this.renderer.removeClass(this.spanCopy.nativeElement, 'transition-click');
-      this.renderer.setProperty(this.spanCopy.nativeElement, 'textContent', 'Click to share list ID');
+      this.renderer.setProperty(this.spanCopy.nativeElement, 'innerHTML', text);
     }, 3000);
-  }
-
-  ngAfterViewInit() {
-    this.darkModeService.initService(this.renderer, this.container);
   }
 
   ngOnInit() {

@@ -1,45 +1,38 @@
-.nes-container {
-  height: 0;
-  padding-bottom: 93vh;
-  .title {
-    margin-bottom: 0;
-  }
-  .message-list {
+.message-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .message {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    .message {
-      display: flex;
-      flex-direction: column;
-      &.-right {
-        align-self: flex-end;
-        i {
-          margin-left: 2rem;
-        }
-      }
-      .nes-balloon {
-        padding: 0 5px;
-        .description {
-          font-size: 75%;
-          margin-top: 0;
-        }
-        &::before,
-        &::after {
-          right: 5rem;
-        }
-      }
+    &.-right {
+      align-self: flex-end;
       i {
-        align-self: flex-end;
-        &.nes-kirby {
-          width: 6rem;
-          height: 6rem;
-        }
+        margin-left: 2rem;
+      }
+    }
+    .nes-balloon {
+      padding: 0 5px;
+      .description {
+        font-size: 75%;
+        margin-top: 0;
+      }
+      &::before,
+      &::after {
+        right: 5rem;
+      }
+    }
+    i {
+      align-self: flex-end;
+      &.nes-kirby {
+        width: 6rem;
+        height: 6rem;
       }
     }
   }
+}
 
-  p:last-of-type {
-    margin-top: 20px;
-  }
+p:last-of-type {
+  margin-top: 20px;
 }

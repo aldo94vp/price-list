@@ -1,6 +1,5 @@
-import { Component, AfterViewInit, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DarkModeService } from 'src/services/dark-mode.service';
 
 @Component({
   selector: 'not-found',
@@ -8,19 +7,13 @@ import { DarkModeService } from 'src/services/dark-mode.service';
   styleUrls: ['not-found.component.scss']
 })
 
-export class NotFoundComponent implements AfterViewInit {
+export class NotFoundComponent implements OnInit{
   @ViewChild('container') container: ElementRef;
   error: string;
   message: string;
   constructor(
-    private renderer: Renderer2,
-    private darkModeService: DarkModeService,
     private activeRoute: ActivatedRoute,
     private router: Router) {}
-  
-  ngAfterViewInit() {
-    this.darkModeService.initService(this.renderer, this.container);
-  }
 
   ngOnInit() {
     const error = this.activeRoute.snapshot.params['error'];

@@ -7,7 +7,6 @@ import { NgForm } from "@angular/forms";
 import { List } from "../../models/list";
 import { Collections } from "../../interfaces/interfaces";
 import { Product } from "../../models/product";
-import { DarkModeService } from "src/services/dark-mode.service";
 
 @Component({
   selector: "product",
@@ -21,17 +20,12 @@ export class ProductComponent implements OnInit {
   isUpdating: boolean = false;
   id: string;
 
-  constructor(private afs: AngularFirestore, private darkModeService: DarkModeService) {
+  constructor(private afs: AngularFirestore) {
     this.product = new Product(this.afs);
   }
   
   startUpdating() {
     this.isUpdating = true;
-    setTimeout(() => {
-      if(this.darkModeService.darkModeActivated) {
-        this.darkModeService.setMode(true, this.darkModeService.dBtn);
-      }
-    },0);
   }
 
   changeQty(increment: boolean, f: NgForm) {
