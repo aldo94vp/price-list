@@ -1,10 +1,13 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+
 import { ListGuard } from "./guards/list.guard";
-import { HomeComponent } from "../components/home/home.component";
-import { ListComponent } from "../components/list/list.component";
 import { HomeGuard } from "./guards/home.guard";
+
+import { HomeComponent } from "src/components/home/home.component";
+import { ListComponent } from "src/components/list/list.component";
 import { NotFoundComponent } from "src/components/not-found/not-found.component";
+import { AllListsComponent } from "src/components/list/all-lists/all-lists.component";
 
 const routes: Routes = [
   {
@@ -16,16 +19,21 @@ const routes: Routes = [
   { path: "home", component: HomeComponent, canActivate: [HomeGuard] },
   {
     path: "list",
-    canActivateChild: [ListGuard],
     children: [
       {
         path: "",
-        component: ListComponent
+        component: ListComponent,
+        canActivate: [ListGuard],
       },
       { 
         path: ":listId",
-        component: ListComponent
+        component: ListComponent,
+        canActivate: [ListGuard],
       },
+      {
+        path: 'all/:userId',
+        component: AllListsComponent
+      }
     ]
   },
   { path: "**", component: NotFoundComponent }

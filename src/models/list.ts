@@ -1,8 +1,9 @@
-import { Collections } from "../interfaces/interfaces";
+import { Collections } from "src/interfaces/interfaces";
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  DocumentReference
+  DocumentReference,
+  QuerySnapshot
 } from "@angular/fire/firestore";
 import { BehaviorSubject } from "rxjs";
 
@@ -37,6 +38,14 @@ export class List {
 
   getList(id: string) {
     return this.listsCollection.ref.doc(id).get();
+  }
+
+  async getLists(uid: string): Promise<QuerySnapshot<Collections.List>> {
+    try {
+      return await this.listsCollection.ref.where('uid', '==', uid).get()
+    } catch (error) {
+      return error;
+    }
   }
 
   setList(list: DocumentReference<Collections.List>) {

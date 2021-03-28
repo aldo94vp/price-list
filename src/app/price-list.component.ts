@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2, ViewChild, AfterViewChecked, AfterViewInit } from "@angular/core";
-import { DarkModeService } from "../services/dark-mode.service";
+import { DarkModeService } from "src/services/dark-mode.service";
 
 @Component({
   selector: "price-list",

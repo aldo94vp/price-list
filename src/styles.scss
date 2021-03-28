@@ -10,6 +10,15 @@
   text-align: center;
 }
 
+a {
+  color: unset;
+}
+
+hr {
+  border: 3px solid;
+  margin: 20px auto;
+}
+
 .nes-container,
 .nes-container.is-dark {
   margin: 10px;

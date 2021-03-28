@@ -4,9 +4,9 @@ import {
   QueryDocumentSnapshot
 } from "@angular/fire/firestore";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Collections } from "../../interfaces/interfaces";
-import { List } from "../../models/list";
-import { Product } from "../../models/product";
+import { Collections } from "src/interfaces/interfaces";
+import { List } from "src/models/list";
+import { Product } from "src/models/product";
 
 @Component({
   selector: "list",

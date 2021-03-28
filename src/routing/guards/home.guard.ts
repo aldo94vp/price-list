@@ -6,7 +6,7 @@ import {
   RouterStateSnapshot,
   Router
 } from "@angular/router";
-import { List } from "../../models/list";
+import { List } from "src/models/list";
 
 @Injectable()
 export class HomeGuard implements CanActivate {

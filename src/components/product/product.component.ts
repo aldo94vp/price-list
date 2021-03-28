@@ -4,9 +4,9 @@ import {
   QueryDocumentSnapshot
 } from "@angular/fire/firestore";
 import { NgForm } from "@angular/forms";
-import { List } from "../../models/list";
-import { Collections } from "../../interfaces/interfaces";
-import { Product } from "../../models/product";
+import { List } from "src/models/list";
+import { Collections } from "src/interfaces/interfaces";
+import { Product } from "src/models/product";
 
 @Component({
   selector: "product",

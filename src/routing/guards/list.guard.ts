@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import {
-  CanActivateChild,
+  CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router
 } from "@angular/router";
-import { List } from "../../models/list";
+import { List } from "src/models/list";
 
 @Injectable()
-export class ListGuard implements CanActivateChild {
+export class ListGuard implements CanActivate {
   list: List;
   constructor(private afs: AngularFirestore, private router: Router) {
     this.list = new List(this.afs);
@@ -19,7 +19,7 @@ export class ListGuard implements CanActivateChild {
     return id.length > 0 ? true: false
   }
 
-  async canActivateChild(
+  async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {

@@ -1,4 +1,4 @@
-import { Collections } from "../interfaces/interfaces";
+import { Collections } from "src/interfaces/interfaces";
 import {
   AngularFirestore,
   AngularFirestoreCollection,

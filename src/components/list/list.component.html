@@ -1,9 +1,10 @@
+<p class="list-id">Your list id is:<br>{{ list.getListId() }}</p>
 <p class="nes-badge copy-list" (click)="copyListId()">
 	<a [href]="list.getListId() | safeurl: 'whatsapp://send?text=https%3A%2F%2Fprice-list-aldo94vp.web.app%2Flist%2F'">
 		<span #spanCopy class="is-warning"><i class="nes-icon whatsapp is-small"></i> Share list <i class="nes-icon whatsapp is-small"></i></span>
 	</a>
 </p>
-<p class="is-small" *ngIf="(list.isClosed | async)"><strong>Your list is already closed</strong></p>
+<p *ngIf="(list.isClosed | async)"><strong>Your list is already closed</strong></p>
 <add-product *ngIf="!(list.isClosed | async)"></add-product>
 <div class="products__container nes-container">
 	<div class="products__header">
